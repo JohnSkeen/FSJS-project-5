@@ -1,263 +1,261 @@
-/* ===================================== 
+/* =====================================
    Public API Request
 ======================================== */
 
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
-* {
-	box-sizing: border-box;
-}
 
-html, body {
-    width: 100%;
-    max-width: 100%;
-}
+/*===========================================
+   Keyframes
+===========================================*/
+@keyframes unfoldIn {
+  0% {
+    transform: scaleY(0.005) scaleX(0); }
+  50% {
+    transform: scaleY(0.005) scaleX(1); }
+  100% {
+    transform: scaleY(1) scaleX(1); } }
 
-body {
-    font-family: "Nunito", sans-serif;
-    text-align: center;
-    background: rgba(235, 235, 235, 0.9);
-}
+/*===========================================
+  Grid Styles
+===========================================*/
+@media (min-width: 769px) {
+  body {
+    margin: 20px auto 0; } }
+@media (min-width: 1400px) {
+  body {
+    width: 1440px;
+    margin: 60px auto 0; } }
 
-header {
-    padding: 15px 5px 5px;
-}
+#employeeGrid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center; }
 
+#employeeGrid ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style-type: none;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin: 0 auto; }
+
+.employee {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: solid 1px #bfbfbf;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 15px;
+  width: 90%;
+  line-height: .7;
+  transition: all .2s ease-in-out; }
+  @media (min-width: 769px) {
+    .employee {
+      padding: 20px;
+      flex-grow: 1;
+      width: 380px; } }
+
+.employee:hover {
+  transition: all .2s ease-in-out;
+  transform: scale(1.02);
+  box-shadow: 3px 3px 10px #797979; }
+
+h3 {
+  font-size: 1.05em; }
+  @media (min-width: 769px) {
+    h3 {
+      font-size: 1.17em; } }
+
+.employee p {
+  font-weight: 400;
+  font-size: .9em;
+  color: #797979; }
+  @media (min-width: 769px) {
+    .employee p {
+      font-size: 1em; } }
+
+h3,
+.employeeText p:last-child {
+  text-transform: capitalize; }
+
+.employeeImage {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%; }
+  @media (min-width: 769px) {
+    .employeeImage {
+      height: 128px;
+      width: 128px; } }
+
+.employeeText {
+  padding-left: 20px; }
+
+/*===========================================
+  Modal Styles
+===========================================*/
+#modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.2); }
+
+#modalFrame {
+  background-color: #fff;
+  margin: 200px auto;
+  padding: 10px;
+  width: 85%;
+  box-shadow: 2px 2px 5px #797979;
+  border-radius: 8px;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2), 0 5px 17px rbga(0, 0, 0, 0.17);
+  display: flex;
+  flex-direction: column;
+  transform: scaleY(0.01) scaleX(0);
+  animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
+  @media (min-width: 769px) {
+    #modalFrame {
+      width: 50%; } }
+  @media (min-width: 1024px) {
+    #modalFrame {
+      width: 40%; } }
+  @media (min-width: 1400px) {
+    #modalFrame {
+      width: 30%; } }
+
+#close {
+  color: #bfbfbf;
+  margin-left: auto;
+  font-size: 20px; }
+
+#close:hover,
+#close:focus {
+  color: #111;
+  text-decoration: none;
+  cursor: pointer; }
+
+#modalLayout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center; }
+
+#modalInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%; }
+
+.modalImage {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px; }
+  @media (min-width: 769px) {
+    .modalImage {
+      width: 160px;
+      height: 160px; } }
+
+.lineBreak {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #bfbfbf;
+  margin: 1em 0;
+  padding: 0;
+  width: 100%; }
+
+.modalText {
+  text-align: center;
+  width: 100%; }
+
+.modalText p:first-of-type {
+  text-transform: lowercase; }
+
+.modalText p {
+  text-transform: capitalize; }
+
+.scroll-left,
+.scroll-right {
+  width: 10%; }
+
+#scrollLeft,
+#scrollRight {
+  font-size: 15px;
+  color: #bfbfbf; }
+  @media (min-width: 769px) {
+    #scrollLeft,
+    #scrollRight {
+      font-size: 30px; } }
+
+#scrollLeft:hover,
+#scrollLeft:focus,
+#scrollRight:hover,
+#scrollRight:focus {
+  color: #111;
+  text-decoration: none;
+  cursor: pointer; }
+
+/*===========================================
+  Header Styles
+===========================================*/
 .header-inner-container {
-    max-width: 1180px;
-    margin: auto;
-}
-
-header h1 {
-    font-size: 1.25em;
-    color: rgba(50, 50, 50, 0.9);
-    margin-top: 35px;
-}
-
-.search-input {
-    padding: 0.4rem 1rem;
-    border: 1px solid rgba(200, 200, 200, 0.9);
-    border-radius: 0.25rem 0 0 0.25rem ;
-    max-width: 20rem;
-    transition: .4s ease-out;
-    outline: none;
-}
-
-.search-input:active, .search-input:hover, .search-input:focus {
-    border: 1px solid rgba(50, 50, 50, 0.9);
-}
-
-.search-submit {
-    cursor: pointer;
-    height: 33px;
-    background: rgba(245, 245, 245, 0.9);
-    border-radius: 0 0.25rem 0.25rem 0;
-    border: 1px solid rgba(200, 200, 200, 0.9);
-    transition: .4s ease-out;
-    outline: none;
-}
-
-.search-submit:active, .search-submit:hover, .search-submit:focus {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(50, 50, 50, 0.9);
-}
-
-
-/* ===================================== 
-   Gallery
-======================================== */
-
-.gallery {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    width: 100%;
-    max-width: 1200px;
-    margin: auto;
-}
-  
-.card {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    cursor: pointer;
-    width: 100%;
-    max-width: 360px;
-    margin: 10px 10px 20px;
-    padding: 10px;
-    background: rgba(245, 245, 245, 0.9);
-    border-radius: 0.25em;
-    border: 1px solid rgba(50, 50, 50, 0.3);
-    transition: .4s ease-out;
-    overflow: hidden;
-}
-
-.card-img {
-    width: 95px;
-    margin: 10px 15px auto 10px;
-    border-radius: 50%;
-}
-
-.card-info-container {
-    text-align: left;
-}
-
-.card-name {
-    margin: 20px auto 0;
-}
-
-.card-text {
-    font-size: 0.9em;
-    color: rgba(50, 50, 50, 0.7);
-    margin: 7px auto;
-    transition: .4s ease-out;
-}
-
-.cap {
-    text-transform: capitalize;
-}
-
-
-/* ===================================== 
-   Modal
-======================================== */
-
-.modal-container {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.7);
-}
-
-.modal {
-    position: relative;
-    width: 95%;
-    max-width: 420px;
-    min-height: 415px;
-    margin: 10px auto auto;
-    padding-bottom: 15px;
-    background: rgba(255, 255, 255, 1);
-    border-radius: 0.25em;
-    border: 1px solid rgba(100, 100, 100, 0.3);
-    transition: .4s ease-out;
-}
-
-.modal-close-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    cursor: pointer;
-    color: rgba(255, 255, 255, 0.9);
-    background: rgba(0, 0, 0, 0.8);
-    outline: none;
-    border-radius: 0.25em;
-    border: 1px solid rgba(50, 50, 50, 0.3);
-}
-
-.modal-img {
-    width: 150px;
-    margin-top: 35px;
-    border-radius: 50%;
-}
-
-.modal-name {
-    margin-bottom: 5px;
-}
-
-.modal-text {
-    color: rgba(50, 50, 50, 0.7);
-    margin: 10px;
-}
-
-.modal hr {
-    width: 75%;
-    margin: 25px auto 30px;
-    border-color: rgba(200, 200, 200, 0.2);
-}
-
-.modal-btn-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
-    width: 95%;
-    max-width: 420px;
-    padding: 10px 15px 15px;;
-    margin: 10px auto auto;
-    background: rgba(255, 255, 255, 1);
-    border-radius: 0.25em;
-    border: 1px solid rgba(100, 100, 100, 0.3);
-}
-
-
-.modal-btn-container .btn {
-    display: inline-block;
-    cursor: pointer;
-    font-size: 0.85em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.9);
-    padding: 0.75em 1.5em;
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 0.35em;
-    transition: .4s ease-out;
-    outline: none;
-  }
-  
-
-/* ===================================== 
-   Media Queries
-======================================== */
-
-/* ===================================== 
-   Tablet
-======================================== */
-
-@media (min-width: 768px) {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; }
+  @media (min-width: 769px) {
     .header-inner-container {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        padding-right: 25px;
-        padding-left: 25px;
-    }
+      flex-direction: row;
+      margin: 0 15px; } }
 
-    .header-text-container {
-        text-align: left;
-    }
+h1 {
+  font-size: 1.1em;
+  padding: 10px 0;
+  text-align: center;
+  flex-wrap: wrap; }
+  @media (min-width: 769px) {
+    h1 {
+      font-size: 1.3em;
+      padding: 0; } }
 
-    .search-container {
-        margin-top: 25px;
-    }
+/*===========================================
+  Search Bar Styles
+===========================================*/
+#search {
+  width: 80%; }
+  @media (min-width: 769px) {
+    #search {
+      width: 25%; } }
 
-    .modal {
-        margin-top: 100px;
-    }
-}
+#search input {
+  width: 100%;
+  padding: 15px 10px;
+  font-size: 18px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  border: none;
+  transition: all .2s ease-in-out; }
 
+#search input:focus,
+#search input:active,
+#search input:hover {
+  outline: none;
+  box-shadow: 2px 2px 10px #797979;
+  transition: all .2s ease-in-out; }
 
-/* ===================================== 
-   Desktop
-   Hover styles on desktop 
-======================================== */
+/*===========================================
+  Typography Styles
+===========================================*/
+body {
+  font-family: "Open Sans", serif; }
 
-@media (min-width: 1024px) {
-
-    .card:hover {
-        background: rgba(255, 255, 255, 1);
-        border: 1px solid rgba(50, 50, 50, 0.9);
-    }
-
-    .card:hover .card-text {
-        color: rgba(25, 25, 25, 1); 
-    }
-
-    .btn:hover {
-        background: rgba(255, 255, 255, 1);
-        color: rgba(25, 25, 25, 1); 
-    }
-}
+/*# sourceMappingURL=styles.css.map */

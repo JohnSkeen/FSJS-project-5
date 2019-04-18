@@ -1,8 +1,42 @@
+// ------------------------------------------
+//  Unobtrusively Adding HTML
+// ------------------------------------------
+
+const searchHTML = `
+  <div id="search">
+    <input id="searchInput" onkeyup="searchBar()" class="search" type="search" placeholder="Search..">
+  </div>
+`;
+
+const gridAndModalHTML = `
+  <div id="employeeGrid">
+  </div>
+  <div id="modal">
+    <div id="modalFrame">
+      <span id="close"><i class="fas fa-times"></i></span>
+      <div id="modalLayout">
+        <div class="scroll-left">
+          <span id="scrollLeft"><i class="fas fa-arrow-left"></i></span>
+        </div>
+        <div id="modalInfo"></div>
+        <div class="scroll-right">
+          <span id="scrollRight"><i class="fas fa-arrow-right"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+`;
+
+$('.header-inner-container').append(searchHTML);
+$('#gallery').append(gridAndModalHTML);
+
+
 const employeeGrid = document.getElementById('employeeGrid');
 const modal = document.getElementById('modal');
 const userInfoApi = 'https://randomuser.me/api/?nat=us&results=12';
 let currentIndex = 0;
 let employeeData = [];
+
 
 // ------------------------------------------
 //  FETCH FUNCTIONS
